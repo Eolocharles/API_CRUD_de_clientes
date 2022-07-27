@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.devsuperior</groupId>
-	<artifactId>API_CRUD_de_clientes</artifactId>
+	<artifactId>API_CRUD_de_clients</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>API_CRUD_de_clientes</name>
+	<name>API_CRUD_de_clients</name>
 	<description>Exercicio API CRUD de clientes</description>
 	<properties>
 		<java.version>17</java.version>
