@@ -1,5 +1,6 @@
 package com.devsuperior.API_CRUD_de_clients.resources;
 
+import com.devsuperior.API_CRUD_de_clients.DTO.ClientDTO;
 import com.devsuperior.API_CRUD_de_clients.entities.Client;
 import com.devsuperior.API_CRUD_de_clients.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,8 @@ public class ClientResource {
     private ClientService service;
 
     @GetMapping
-    public ResponseEntity<List<Client>> findAll(){
-        List<Client> list = service.findAll();
+    public ResponseEntity<List<ClientDTO>> findAll(){
+        List<ClientDTO> list = service.findAll();
         return  ResponseEntity.ok().body(list);
 
     }
