@@ -5,6 +5,7 @@ import com.devsuperior.API_CRUD_de_clients.entities.Client;
 import com.devsuperior.API_CRUD_de_clients.repositories.ClientRepository;
 import com.devsuperior.API_CRUD_de_clients.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,16 +50,25 @@ public class ClientService {
     @Transactional
     public ClientDTO update(Long id, ClientDTO dto) {
         try {
-        Client entity = repository.getReferenceById(id);
-        entity.setName(dto.getName());
-        entity.setCpf(dto.getCpf());
-        entity.setIncome(dto.getIncome());
-        entity.setBirthDate(dto.getBirthDate());
-        entity.setChildren(dto.getChildren());
-        entity = repository.save(entity);
-        return new ClientDTO(entity);
-    }catch (EntityNotFoundException e){
-        throw new ResourceNotFoundException("Id not found " + id);
+            Client entity = repository.getReferenceById(id);
+            entity.setName(dto.getName());
+            entity.setCpf(dto.getCpf());
+            entity.setIncome(dto.getIncome());
+            entity.setBirthDate(dto.getBirthDate());
+            entity.setChildren(dto.getChildren());
+            entity = repository.save(entity);
+            return new ClientDTO(entity);
+        }
+        catch (EntityNotFoundException e){
+            throw new ResourceNotFoundException("Id not found " + id);
+        }
     }
+    public void delete(Long id) {
+        try {
+            repository.deleteById(id);
+        }
+        catch (EmptyResultDataAccessException e){
+            throw new ResourceNotFoundException("Id not found " + id);
+        }
     }
 }
